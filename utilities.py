@@ -5,6 +5,7 @@
 import inspect
 import os
 import os.path
+from pathlib import Path
 
 import config
 
@@ -16,12 +17,13 @@ def saveimg(obj, name, directory=config.FIGURES):
         obj: a matplotlib object with a savefig method (plt or plt.Figure)
         name (str): the name to be given to the file, *without* extensions.
     """
-    dirs = [os.path.join(directory, f) for f in config.formats]
-    for dir in dirs:
-        os.makedirs(dir, exist_ok=True)
+    directory = Path(directory)
+    dirs = [directory/f for f in config.formats]
+    for dir_ in dirs:
+        dir_.mkdir(exist_ok=True)
 
     for f in config.formats:
-        obj.savefig(os.path.join(directory, f, name+f".{f}"), dpi=500.0, format=f)
+        obj.savefig((directory / f / name).withsuffix(f), dpi=500.0, format=f)
 
 
 def sprint(*args, **kwargs):
