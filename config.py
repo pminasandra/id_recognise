@@ -4,7 +4,7 @@
 # May 04, 2026
 
 import os
-import os.path
+from pathlib import Path
 import sys
 
 
@@ -12,9 +12,9 @@ import sys
 try:
     PROJECTROOT = open(".cw", "r").read().rstrip()
 except FileNotFoundError:
-    PROJECTROOT = os.path.dirname(os.path.dirname(os.path.abspath(sys.argv[0])))
-DATA = os.path.join(PROJECTROOT, "Data")
-FIGURES = os.path.join(PROJECTROOT, "Figures")
+    PROJECTROOT =Path(sys.argv[0]).absolute().parent.parent
+DATA = PROJECTROOT / "Data"
+FIGURES = PROJECTROOT/ "Figures"
 
 formats=['png', 'pdf', 'svg']
 

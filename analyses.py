@@ -4,7 +4,7 @@
 
 """
 From existing accelerometer data, try to resolve ID for randomly chosenn subsequences.
-Then vary sync error, burst interval, number of targets, query length, and target
-sequence length to see how well matching occurs.
+Then vary sync error, burst interval, number of targets, query length, target
+sequence length, and query error rate to see how well matching occurs.
 """
 
